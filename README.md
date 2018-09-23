@@ -1,8 +1,7 @@
 # react-native-device-info
 
-[![npm version](https://badge.fury.io/js/react-native-device-info.svg)](http://badge.fury.io/js/react-native-device-info)
-
-Device Information for [React Native](https://github.com/facebook/react-native).
+Simple Device Information for [React Native](https://github.com/facebook/react-native).
+This is a fork of react-native-device-info - we removed some of the methods that were potentially causing issues for us.
 
 ## TOC
 
