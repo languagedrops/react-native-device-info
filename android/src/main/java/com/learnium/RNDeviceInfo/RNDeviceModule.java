@@ -147,49 +147,6 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void getMacAddress(Promise p) {
-    String macAddress = getWifiInfo().getMacAddress();
-
-    String permission = "android.permission.INTERNET";
-    int res = this.reactContext.checkCallingOrSelfPermission(permission);
-
-    if (res == PackageManager.PERMISSION_GRANTED) {
-      try {
-        List<NetworkInterface> all = Collections.list(NetworkInterface.getNetworkInterfaces());
-        for (NetworkInterface nif : all) {
-          if (!nif.getName().equalsIgnoreCase("wlan0")) continue;
-
-          byte[] macBytes = nif.getHardwareAddress();
-          if (macBytes == null) {
-              macAddress = "";
-          } else {
-
-            StringBuilder res1 = new StringBuilder();
-            for (byte b : macBytes) {
-                res1.append(String.format("%02X:",b));
-            }
-
-            if (res1.length() > 0) {
-                res1.deleteCharAt(res1.length() - 1);
-            }
-
-            macAddress = res1.toString();
-          }
-        }
-      } catch (Exception ex) {
-      }
-    }
-
-    p.resolve(macAddress);    
-  }
-
-  @ReactMethod
-  public String getCarrier() {
-    TelephonyManager telMgr = (TelephonyManager) this.reactContext.getSystemService(Context.TELEPHONY_SERVICE);
-    return telMgr.getNetworkOperatorName();
-  }
-
-  @ReactMethod
   public Integer getTotalDiskCapacity() {
     try {
       StatFs root = new StatFs(Environment.getRootDirectory().getAbsolutePath());
@@ -292,14 +249,6 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
     constants.put("isTablet", this.isTablet());
     constants.put("fontScale", this.fontScale());
     constants.put("is24Hour", this.is24Hour());
-    if (getCurrentActivity() != null &&
-        (getCurrentActivity().checkCallingOrSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED ||
-            getCurrentActivity().checkCallingOrSelfPermission(Manifest.permission.READ_SMS) == PackageManager.PERMISSION_GRANTED ||
-            getCurrentActivity().checkCallingOrSelfPermission("android.permission.READ_PHONE_NUMBERS") == PackageManager.PERMISSION_GRANTED)) {
-      TelephonyManager telMgr = (TelephonyManager) this.reactContext.getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
-      constants.put("phoneNumber", telMgr.getLine1Number());
-    }
-    constants.put("carrier", this.getCarrier());
     constants.put("totalDiskCapacity", this.getTotalDiskCapacity());
     constants.put("freeDiskStorage", this.getFreeDiskStorage());
     constants.put("installReferrer", this.getInstallReferrer());

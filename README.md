@@ -203,7 +203,6 @@ var DeviceInfo = require('react-native-device-info');
 | [getBrand()](#getbrand)                           | `string`            |  ✅  |   ✅    |   ✅    | 0.9.3  |
 | [getBuildNumber()](#getbuildnumber)               | `string`            |  ✅  |   ✅    |   ✅    | ?      |
 | [getBundleId()](#getbundleid)                     | `string`            |  ✅  |   ✅    |   ✅    | ?      |
-| [getCarrier()](#getcarrier)                       | `string`            |  ✅  |   ✅    |   ❌    | 0.13.0 |
 | [getDeviceCountry()](#getdevicecountry)           | `string`            |  ✅  |   ✅    |   ✅    | 0.9.0  |
 | [getDeviceId()](#getdeviceid)                     | `string`            |  ✅  |   ✅    |   ✅    | 0.5.0  |
 | [getDeviceLocale()](#getdevicelocale)             | `string`            |  ✅  |   ✅    |   ✅    | 0.7.0  |
@@ -215,11 +214,9 @@ var DeviceInfo = require('react-native-device-info');
 | [getInstallReferrer()](#getinstallreferrer)       | `string`            |  ❌  |   ✅    |   ❌    | 0.19.0 |
 | [getInstanceID()](#getinstanceid)                 | `string`            |  ❌  |   ✅    |   ❌    | ?      |
 | [getLastUpdateTime()](#getlastupdatetime)         | `number`            |  ❌  |   ✅    |   ❌    | 0.12.0 |
-| [getMACAddress()](#getmacaddress)                 | `Promise<string>`   |  ✅  |   ✅    |   ❌    | 0.12.0 |
 | [getManufacturer()](#getmanufacturer)             | `string`            |  ✅  |   ✅    |   ✅    | ?      |
 | [getMaxMemory()](#getmaxmemory)                   | `number`            |  ❌  |   ✅    |   ✅    | 0.14.0 |
 | [getModel()](#getmodel)                           | `string`            |  ✅  |   ✅    |   ✅    | ?      |
-| [getPhoneNumber()](#getphonenumber)               | `string`            |  ❌  |   ✅    |   ❌    | 0.12.0 |
 | [getReadableVersion()](#getreadableversion)       | `string`            |  ✅  |   ✅    |   ✅    | ?      |
 | [getSerialNumber()](#getserialnumber)             | `string`            |  ❌  |   ✅    |   ❌    | 0.12.0 |
 | [getSystemName()](#getsystemname)                 | `string`            |  ✅  |   ✅    |   ✅    | ?      |
@@ -330,18 +327,6 @@ Gets the application bundle identifier.
 
 ```js
 const bundleId = DeviceInfo.getBundleId(); // "com.learnium.mobile"
-```
-
----
-
-### getCarrier()
-
-Gets the carrier name (network operator).
-
-**Examples**
-
-```js
-const carrier = DeviceInfo.getCarrier(); // "SOFTBANK"
 ```
 
 ---
@@ -534,28 +519,6 @@ const lastUpdateTime = DeviceInfo.getLastUpdateTime();
 
 ---
 
-### getMACAddress()
-
-Gets the network adapter MAC address.
-
-**Examples**
-
-```js
-DeviceInfo.getMACAddress().then(mac => {
-  // "E5:12:D8:E5:69:97"
-});
-```
-
-**Android Permissions**
-
-* [android.permission.ACCESS_WIFI_STATE](https://developer.android.com/reference/android/Manifest.permission.html#ACCESS_WIFI_STATE)
-
-**Notes**
-
-> iOS: This method always return "02:00:00:00:00:00" as retrieving the MAC address is [disabled since iOS 7](https://developer.apple.com/library/archive/releasenotes/General/WhatsNewIniOS/Articles/iOS7.html#//apple_ref/doc/uid/TP40013162-SW34)
-
----
-
 ### getManufacturer()
 
 Gets the device manufacturer.
@@ -597,28 +560,6 @@ const model = DeviceInfo.getModel();
 // Android: ?
 // Windows: ?
 ```
-
----
-
-### getPhoneNumber()
-
-Gets the device phone number.
-
-**Examples**
-
-```js
-const phoneNumber = DeviceInfo.getPhoneNumber();
-
-// Android: ?
-```
-
-**Android Permissions**
-
-* [android.permission.READ_PHONE_STATE](https://developer.android.com/reference/android/Manifest.permission.html#READ_PHONE_STATE)
-
-**Notes**
-
-> This can return `undefined` in certain cases and should not be relied on. [SO entry on the subject](https://stackoverflow.com/questions/2480288/programmatically-obtain-the-phone-number-of-the-android-phone#answer-2480307).
 
 ---
 

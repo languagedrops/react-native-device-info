@@ -284,12 +284,6 @@ RCT_EXPORT_MODULE(RNDeviceInfo)
              };
 }
 
-RCT_EXPORT_METHOD(getMacAddress:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
-{
-    NSString *address = @"02:00:00:00:00:00";
-    resolve(address);
-} 
-
 RCT_EXPORT_METHOD(getIpAddress:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
     NSString *address = @"0.0.0.0";

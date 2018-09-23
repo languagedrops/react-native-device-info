@@ -22,9 +22,6 @@ export default {
   getIPAddress: function() {
     return RNDeviceInfo.getIpAddress();
   },
-  getMACAddress: function() {
-    return RNDeviceInfo.getMacAddress();
-  },
   getDeviceId: function() {
     return RNDeviceInfo.deviceId;
   },
@@ -96,12 +93,6 @@ export default {
   },
   getLastUpdateTime: function() {
     return RNDeviceInfo.lastUpdateTime;
-  },
-  getPhoneNumber: function() {
-    return RNDeviceInfo.phoneNumber;
-  },
-  getCarrier: function() {
-    return RNDeviceInfo.carrier;
   },
   getTotalMemory: function() {
     return RNDeviceInfo.totalMemory;
