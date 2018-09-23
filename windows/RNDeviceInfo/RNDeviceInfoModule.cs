@@ -179,7 +179,6 @@ namespace RNDeviceInfo
                 constants["systemManufacturer"] = manufacturer;
                 constants["bundleId"] = bundleId;
                 constants["appName"] = appName;
-                constants["userAgent"] = "not available";
                 constants["timezone"] = TimeZoneInfo.Local.Id;
                 constants["isEmulator"] = IsEmulator(model);
                 constants["isTablet"] = IsTablet(os);
