@@ -1,4 +1,4 @@
-# react-native-device-info
+# react-native-simple-device-info
 
 Simple Device Information for [React Native](https://github.com/facebook/react-native).
 This is a fork of react-native-device-info - we removed some of the methods that were potentially causing issues for us.
