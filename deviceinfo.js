@@ -65,7 +65,7 @@ export default {
     return RNDeviceInfo.deviceLocale;
   },
   getDeviceCountry: function() {
-    return RNDeviceInfo.deviceCountry;
+    return RNDeviceInfo.deviceCountry || '';
   },
   getTimezone: function() {
     return RNDeviceInfo.timezone;
