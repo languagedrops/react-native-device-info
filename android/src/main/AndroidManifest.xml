@@ -5,7 +5,7 @@
         <receiver
             android:name="com.learnium.RNDeviceInfo.RNDeviceReceiver"
             android:enabled="true"
-            android:exported="true"
+            android:exported="false"
         >
             <intent-filter>
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
