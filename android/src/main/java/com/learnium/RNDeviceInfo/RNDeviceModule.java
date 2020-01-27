@@ -11,8 +11,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.net.wifi.WifiManager;
-import android.net.wifi.WifiInfo;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
@@ -37,15 +35,12 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
 import java.lang.Runtime;
-import java.net.NetworkInterface;
 
 import javax.annotation.Nullable;
 
 public class RNDeviceModule extends ReactContextBaseJavaModule {
 
   ReactApplicationContext reactContext;
-
-  WifiInfo wifiInfo;
 
   public RNDeviceModule(ReactApplicationContext reactContext) {
     super(reactContext);
@@ -56,14 +51,6 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
   @Override
   public String getName() {
     return "RNDeviceInfo";
-  }
-
-  private WifiInfo getWifiInfo() {
-    if (this.wifiInfo == null) {
-      WifiManager manager = (WifiManager) reactContext.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-      this.wifiInfo = manager.getConnectionInfo();
-    }
-    return this.wifiInfo;
   }
 
   private String getCurrentLanguage() {
@@ -138,12 +125,6 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
   public void isPinOrFingerprintSet(Callback callback) {
     KeyguardManager keyguardManager = (KeyguardManager) this.reactContext.getApplicationContext().getSystemService(Context.KEYGUARD_SERVICE); //api 16+
     callback.invoke(keyguardManager.isKeyguardSecure());
-  }
-
-  @ReactMethod
-  public void getIpAddress(Promise p) {
-    String ipAddress = Formatter.formatIpAddress(getWifiInfo().getIpAddress());
-    p.resolve(ipAddress);
   }
 
   @ReactMethod
